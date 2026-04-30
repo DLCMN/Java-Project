@@ -1,11 +1,5 @@
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import javax.swing.UIManager;
-import javax.swing.JOptionPane;
-
+import javax.swing.*;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Dimension;
@@ -23,11 +17,19 @@ public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair{
 
 	public static void main(String[] args){
 
-		String guitar = "GuitarStrum.wav";
-		String harmonica = "Harmonica.wav";
-		String meow = "Meow.wav";
-		String moo = "Moo.wav";
-		String chosenInstrument = harmonica;
+		String guitar = "Java-Project/GuitarStrum.wav";
+		String harmonica = "Java-Project/Harmonica.wav";
+		String meow = "Java-Project/Meow.wav";
+		String moo = "Java-Project/Moo.wav";
+		String chosenInstrument = "";
+
+		ImageIcon cat = new ImageIcon("happyCat.png");
+		ImageIcon CowBell = new ImageIcon("Java-Project/CowBell.png");
+		ImageIcon Guitar = new ImageIcon("Java-Project/SpongebobGuitar.png");
+		ImageIcon Harmonica = new ImageIcon("Java-Project/harmonicaSquirrel.png");
+
+
+
 
 
 		JFrame f = new JFrame("Hi Alan T Ryan :33");
@@ -56,7 +58,7 @@ public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair{
 		panel.add(label);
 
 
-		JButton buttonInst1 = new JButton("Cat mow" );
+		JButton buttonInst1 = new JButton("Cat mow", cat );
 		buttonInst1.setBounds(0, 0, 80, 80);
 		panel.add(buttonInst1).setMinimumSize(new Dimension(125, 100));
 		buttonInst1.setMaximumSize(new Dimension(125, 100));
