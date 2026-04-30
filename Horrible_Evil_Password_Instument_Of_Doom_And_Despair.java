@@ -16,13 +16,16 @@ import javax.sound.sampled.Clip;
 public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair{
 
 	
-
+	static Boolean Instchose = false;
+	static String chosenInstrument = "";
 	public static void main(String[] args){
 
 		String guitar = "GuitarStrum.wav";
 		String harmonica = "Harmonica.wav";
 		String meow = "Meow.wav";
 		String moo = "Moo.wav";
+
+		
 
 		ImageIcon cat = new ImageIcon("happyCat.png");
 		ImageIcon CowBell = new ImageIcon("CowBell.png");
@@ -63,8 +66,9 @@ public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair{
 		buttonInst1.addActionListener(new ActionListener() {
 		  public void actionPerformed(ActionEvent e)            {
         //Here goes the action (method) you want to execute when clicked
-    	String chosenInstrument = meow;
+    	chosenInstrument = meow;
 		System.out.print("meow");
+		Instchose = true;
     	}
 			
 		});
@@ -78,8 +82,10 @@ public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair{
 			buttonInst2.addActionListener(new ActionListener() {
 		  public void actionPerformed(ActionEvent e)            {
         //Here goes the action (method) you want to execute when clicked
-    	String chosenInstrument = harmonica;
+    	chosenInstrument = harmonica;
 		System.out.print("harmonica");
+		Instchose = true;
+
     	}
 			
 		});
@@ -92,8 +98,9 @@ public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair{
 			buttonInst3.addActionListener(new ActionListener() {
 		  public void actionPerformed(ActionEvent e)            {
         //Here goes the action (method) you want to execute when clicked
-    	String chosenInstrument = guitar;
+    	chosenInstrument = guitar;
 		System.out.print("strum");
+		Instchose = true;
     	}
 			
 		});
@@ -105,8 +112,9 @@ public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair{
 			buttonInst4.addActionListener(new ActionListener() {
 		  public void actionPerformed(ActionEvent e)            {
         //Here goes the action (method) you want to execute when clicked
-    	String chosenInstrument = moo;
+    	chosenInstrument = moo;
 		System.out.print("moo");
+		Instchose = true;
     	}
 			
 		});
@@ -117,6 +125,15 @@ public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair{
 
 		
 			JButton button1 = new JButton("Next");
+				button1.addActionListener(new ActionListener() {
+		  public void actionPerformed(ActionEvent e)            {
+			System.out.println("hello");
+			PlayMusic(chosenInstrument);
+			
+    
+    	}
+			
+		});
 			button1.setAlignmentX(FlowLayout.CENTER);
 		panel.add(button1);
 
@@ -127,5 +144,26 @@ public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair{
 		
 		f.setSize(400, 400);	
 		f.setVisible(true);
+	}
+
+	public static void PlayMusic(String location) {
+		try
+		{
+			File musicPath = new File(location);
+			if (musicPath.exists()) 
+			{
+				AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
+				Clip clip = AudioSystem.getClip();
+				clip.open(audioInput);
+				clip.start();
+			}
+			else
+			{
+				System.out.println("No file");
+			}
+		}
+		catch(Exception e) {
+				System.out.println(e);
+		}
 	}
 } 
