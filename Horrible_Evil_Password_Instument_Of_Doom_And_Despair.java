@@ -4,10 +4,18 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.UIManager;
+import javax.swing.JOptionPane;
 
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Dimension;
+
+import java.io.File;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+
+
 
 public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair{
 
@@ -15,7 +23,13 @@ public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair{
 
 	public static void main(String[] args){
 
-		String ChosenInstrument = "";
+		String guitar = "GuitarStrum.wav";
+		String harmonica = "Harmonica.wav";
+		String meow = "Meow.wav";
+		String moo = "Moo.wav";
+		String chosenInstrument = harmonica;
+
+
 		JFrame f = new JFrame("Hi Alan T Ryan :33");
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		try {
