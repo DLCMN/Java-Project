@@ -3,6 +3,8 @@ import javax.swing.*;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import java.io.File;
 import javax.sound.sampled.AudioInputStream;
@@ -17,16 +19,15 @@ public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair{
 
 	public static void main(String[] args){
 
-		String guitar = "Java-Project/GuitarStrum.wav";
-		String harmonica = "Java-Project/Harmonica.wav";
-		String meow = "Java-Project/Meow.wav";
-		String moo = "Java-Project/Moo.wav";
-		String chosenInstrument = "";
+		String guitar = "GuitarStrum.wav";
+		String harmonica = "Harmonica.wav";
+		String meow = "Meow.wav";
+		String moo = "Moo.wav";
 
 		ImageIcon cat = new ImageIcon("happyCat.png");
-		ImageIcon CowBell = new ImageIcon("Java-Project/CowBell.png");
-		ImageIcon Guitar = new ImageIcon("Java-Project/SpongebobGuitar.png");
-		ImageIcon Harmonica = new ImageIcon("Java-Project/harmonicaSquirrel.png");
+		ImageIcon CowBell = new ImageIcon("CowBell.png");
+		ImageIcon Guitar = new ImageIcon("SpongebobGuitar.png");
+		ImageIcon Harmonica = new ImageIcon("harmonicaSquirrel.png");
 
 
 
@@ -58,24 +59,57 @@ public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair{
 		panel.add(label);
 
 
-		JButton buttonInst1 = new JButton("Cat mow", cat );
+		JButton buttonInst1 = new JButton(cat);
+		buttonInst1.addActionListener(new ActionListener() {
+		  public void actionPerformed(ActionEvent e)            {
+        //Here goes the action (method) you want to execute when clicked
+    	String chosenInstrument = meow;
+		System.out.print("meow");
+    	}
+			
+		});
 		buttonInst1.setBounds(0, 0, 80, 80);
 		panel.add(buttonInst1).setMinimumSize(new Dimension(125, 100));
 		buttonInst1.setMaximumSize(new Dimension(125, 100));
 		buttonInst1.setPreferredSize(new Dimension(125, 100));
 
 	
-			JButton buttonInst2 = new JButton("Harmonica");
+			JButton buttonInst2 = new JButton(Harmonica);
+			buttonInst2.addActionListener(new ActionListener() {
+		  public void actionPerformed(ActionEvent e)            {
+        //Here goes the action (method) you want to execute when clicked
+    	String chosenInstrument = harmonica;
+		System.out.print("harmonica");
+    	}
+			
+		});
 		panel.add(buttonInst2).setMinimumSize(new Dimension(125, 100));
 		buttonInst2.setMaximumSize(new Dimension(125, 100));
 		buttonInst2.setPreferredSize(new Dimension(125, 100));
 		
-			JButton buttonInst3 = new JButton("Gootar");
+			JButton buttonInst3 = new JButton(Guitar);
+
+			buttonInst3.addActionListener(new ActionListener() {
+		  public void actionPerformed(ActionEvent e)            {
+        //Here goes the action (method) you want to execute when clicked
+    	String chosenInstrument = guitar;
+		System.out.print("strum");
+    	}
+			
+		});
 		panel.add(buttonInst3).setMinimumSize(new Dimension(125, 100));
 		buttonInst3.setMaximumSize(new Dimension(125, 100));
 		buttonInst3.setPreferredSize(new Dimension(125, 100));
 		
-			JButton buttonInst4 = new JButton("Cowbell?");
+			JButton buttonInst4 = new JButton(CowBell);
+			buttonInst4.addActionListener(new ActionListener() {
+		  public void actionPerformed(ActionEvent e)            {
+        //Here goes the action (method) you want to execute when clicked
+    	String chosenInstrument = moo;
+		System.out.print("moo");
+    	}
+			
+		});
 		panel.add(buttonInst4).setMinimumSize(new Dimension(125, 100));
 		buttonInst4.setMaximumSize(new Dimension(125, 100));
 		buttonInst4.setPreferredSize(new Dimension(125, 100));
