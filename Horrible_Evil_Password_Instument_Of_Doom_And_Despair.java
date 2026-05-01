@@ -18,6 +18,8 @@ public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair{
 	
 	static Boolean Instchose = false;
 	static String chosenInstrument = "";
+
+	
 	public static void main(String[] args){
 
 		String guitar = "GuitarStrum.wav";
@@ -37,12 +39,12 @@ public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair{
 
 
 		JFrame f = new JFrame("Hi Alan T Ryan :33");
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		try {
-			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-		} catch (Exception e) {
-            System.out.println("Look and Feel not set: " + e.getMessage());
-		}
+			f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			try {
+				UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+			} catch (Exception e) {
+        	    System.out.println("Look and Feel not set: " + e.getMessage());
+			}
 
 
 		
@@ -52,95 +54,114 @@ public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair{
 
 	
 		
-		JPanel panel = new JPanel();
-		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 35, 20));
+			JPanel WSPanel = new JPanel();
+				WSPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 35, 20));
 
 
-			JLabel label = new JLabel("Which is the worst sound?");
-		label.setFont(new Font("Serif", Font.BOLD, 30 ));
-		label.setHorizontalAlignment(JLabel.CENTER);
-		panel.add(label);
+				JLabel worstSound = new JLabel("Which is the worst sound?");
+					worstSound.setFont(new Font("Serif", Font.BOLD, 30 ));
+					worstSound.setHorizontalAlignment(JLabel.CENTER);
+					WSPanel.add(worstSound);
 
 
-		JButton buttonInst1 = new JButton(cat);
-		buttonInst1.addActionListener(new ActionListener() {
-		  public void actionPerformed(ActionEvent e)            {
-        //Here goes the action (method) you want to execute when clicked
-    	chosenInstrument = meow;
-		System.out.print("meow");
-		Instchose = true;
-    	}
+				JButton buttonInst1 = new JButton(cat);
+
+					buttonInst1.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e)            {
+						//Here goes the action (method) you want to execute when clicked
+							chosenInstrument = meow;
+							System.out.print("meow");
+							Instchose = true;
+							}
+				
+					});
+
+					buttonInst1.setBounds(0, 0, 80, 80);
+					WSPanel.add(buttonInst1).setMinimumSize(new Dimension(125, 100));
+					buttonInst1.setMaximumSize(new Dimension(125, 100));
+							buttonInst1.setPreferredSize(new Dimension(125, 100));
+
+						
+				JButton buttonInst2 = new JButton(Harmonica);
+					buttonInst2.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e)            {
+							//Here goes the action (method) you want to execute when clicked
+							chosenInstrument = harmonica;
+							System.out.print("harmonica");
+							Instchose = true;
+
+    					}
 			
-		});
-		buttonInst1.setBounds(0, 0, 80, 80);
-		panel.add(buttonInst1).setMinimumSize(new Dimension(125, 100));
-		buttonInst1.setMaximumSize(new Dimension(125, 100));
-		buttonInst1.setPreferredSize(new Dimension(125, 100));
+					});
+					WSPanel.add(buttonInst2).setMinimumSize(new Dimension(125, 100));
+					buttonInst2.setMaximumSize(new Dimension(125, 100));
+					buttonInst2.setPreferredSize(new Dimension(125, 100));
+					
+				JButton buttonInst3 = new JButton(Guitar);
 
-	
-			JButton buttonInst2 = new JButton(Harmonica);
-			buttonInst2.addActionListener(new ActionListener() {
-		  public void actionPerformed(ActionEvent e)            {
-        //Here goes the action (method) you want to execute when clicked
-    	chosenInstrument = harmonica;
-		System.out.print("harmonica");
-		Instchose = true;
+					buttonInst3.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e)            {
+							//Here goes the action (method) you want to execute when clicked
+							chosenInstrument = guitar;
+							System.out.print("strum");
+							Instchose = true;
+						}
+								
+						});
 
-    	}
+					WSPanel.add(buttonInst3).setMinimumSize(new Dimension(125, 100));
+					buttonInst3.setMaximumSize(new Dimension(125, 100));
+					buttonInst3.setPreferredSize(new Dimension(125, 100));
+						
+				JButton buttonInst4 = new JButton(CowBell);
+
+					buttonInst4.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e)            {
+							//Here goes the action (method) you want to execute when clicked
+							chosenInstrument = moo;
+							System.out.print("moo");
+							Instchose = true;
+							}
+				
+					});
+					WSPanel.add(buttonInst4).setMinimumSize(new Dimension(125, 100));
+					buttonInst4.setMaximumSize(new Dimension(125, 100));
+					buttonInst4.setPreferredSize(new Dimension(125, 100));
+
+
 			
-		});
-		panel.add(buttonInst2).setMinimumSize(new Dimension(125, 100));
-		buttonInst2.setMaximumSize(new Dimension(125, 100));
-		buttonInst2.setPreferredSize(new Dimension(125, 100));
-		
-			JButton buttonInst3 = new JButton(Guitar);
+				JButton button1 = new JButton("Next");
 
-			buttonInst3.addActionListener(new ActionListener() {
-		  public void actionPerformed(ActionEvent e)            {
-        //Here goes the action (method) you want to execute when clicked
-    	chosenInstrument = guitar;
-		System.out.print("strum");
-		Instchose = true;
-    	}
-			
-		});
-		panel.add(buttonInst3).setMinimumSize(new Dimension(125, 100));
-		buttonInst3.setMaximumSize(new Dimension(125, 100));
-		buttonInst3.setPreferredSize(new Dimension(125, 100));
-		
-			JButton buttonInst4 = new JButton(CowBell);
-			buttonInst4.addActionListener(new ActionListener() {
-		  public void actionPerformed(ActionEvent e)            {
-        //Here goes the action (method) you want to execute when clicked
-    	chosenInstrument = moo;
-		System.out.print("moo");
-		Instchose = true;
-    	}
-			
-		});
-		panel.add(buttonInst4).setMinimumSize(new Dimension(125, 100));
-		buttonInst4.setMaximumSize(new Dimension(125, 100));
-		buttonInst4.setPreferredSize(new Dimension(125, 100));
+					button1.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e)            {
+							System.out.println("hello");
+							PlayMusic(chosenInstrument);
+							if (chosenInstrument == "") {
+								JDialog noInstrument = new JDialog(f, ">:[");
+								JLabel noInstrum = new JLabel("Please pick one!!!");
+									
 
+								noInstrument.add(noInstrum);
+								noInstrument.setSize(250, 100);
+								noInstrum.setFont(new Font("Serif", Font.BOLD, 20 ));
+								noInstrum.setHorizontalAlignment(JLabel.CENTER);
+								noInstrument.setVisible(true);
+								//add error sound
+							}
+							else {
+								//
+								
+							}
+						}
+						
+					});
+					button1.setAlignmentX(FlowLayout.CENTER);
+				WSPanel.add(button1);
 
-		
-			JButton button1 = new JButton("Next");
-				button1.addActionListener(new ActionListener() {
-		  public void actionPerformed(ActionEvent e)            {
-			System.out.println("hello");
-			PlayMusic(chosenInstrument);
-			
-    
-    	}
-			
-		});
-			button1.setAlignmentX(FlowLayout.CENTER);
-		panel.add(button1);
+			f.add(WSPanel);
+					
 
-		f.add(panel);
-		
-
-		
+					
 		
 		f.setSize(400, 400);	
 		f.setVisible(true);
