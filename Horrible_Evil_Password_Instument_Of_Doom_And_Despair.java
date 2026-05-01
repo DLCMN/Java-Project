@@ -214,10 +214,39 @@ public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair extends JFrame
                               if (maidenName.length() < 5)  {
 								JDialog maidenTooShort = new JDialog(Horrible_Evil_Password_Instument_Of_Doom_And_Despair.this,">:[");
 								JLabel maidenShort = new JLabel("Please write atleast 5 letters");
+
+								maidenTooShort.add(maidenShort);
+									
+									 maidenTooShort.setSize(250, 100);
+                                    maidenShort.setFont(new Font("Serif", Font.BOLD, 15 ));
+                                    maidenShort.setHorizontalAlignment(JLabel.CENTER);
+                                    maidenTooShort.setVisible(true);
+                                    maidenTooShort.setLocation(((int)(Math.random() *1200) + 50), ((int)(Math.random() *700) + 20));
 							  }
 							  else if (maidenName.length() < 5)  {
 								JDialog maidenTooLong = new JDialog(Horrible_Evil_Password_Instument_Of_Doom_And_Despair.this,">:[");
 								JLabel maidenLong = new JLabel("Please write less than 10 letters");
+
+								maidenTooLong.add(maidenLong);
+			
+                                    maidenTooLong.setSize(250, 100);
+                                    maidenLong.setFont(new Font("Serif", Font.BOLD, 15 ));
+                                    maidenLong.setHorizontalAlignment(JLabel.CENTER);
+                                    maidenTooLong.setVisible(true);
+                                    maidenTooLong.setLocation(((int)(Math.random() *1200) + 50), ((int)(Math.random() *700) + 20));
+
+							  }
+
+							  else if (!(c >= 'A' && c <= 'Z') && !(c >= 'a' && c <= 'z')) {
+										JDialog notLetter = new JDialog(Horrible_Evil_Password_Instument_Of_Doom_And_Despair.this,">:[");
+								JLabel noLetter = new JLabel("Please only use letters");
+								notLetter.add(noLetter);
+			
+                                   notLetter.setSize(250, 100);
+                                    noLetter.setFont(new Font("Serif", Font.BOLD, 15 ));
+                                    noLetter.setHorizontalAlignment(JLabel.CENTER);
+                                    notLetter.setVisible(true);
+                                    notLetter.setLocation(((int)(Math.random() *1200) + 50), ((int)(Math.random() *700) + 20));
 							  }
 							  else
                                 maidenName = maidenName.toUpperCase();
