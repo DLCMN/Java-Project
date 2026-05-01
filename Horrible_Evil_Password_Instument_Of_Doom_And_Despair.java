@@ -226,4 +226,26 @@ public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair extends JFrame
         new Horrible_Evil_Password_Instument_Of_Doom_And_Despair();
         
     }
+
+
+public static void PlayMusic(String location) {
+		try
+		{
+			File musicPath = new File(location);
+			if (musicPath.exists()) 
+			{
+				AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
+				Clip clip = AudioSystem.getClip();
+				clip.open(audioInput);
+				clip.start();
+			}
+			else
+			{
+				System.out.println("No file");
+			}
+		}
+		catch(Exception e) {
+				System.out.println(e);
+		}
+	}
 }
