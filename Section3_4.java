@@ -12,11 +12,8 @@ public class Section3_4{
 	
 
 	public static void main(String[] args){
-		Integer B = 1;Integer C = 5;Integer D = 9 ;Integer F = 13;Integer G = 17;
-		Integer H = 2;Integer J = 6;Integer K = 10;Integer L = 14;Integer M = 18;
-		Integer N = 3;Integer P = 7;Integer Q = 11;Integer R = 15;Integer S = 19;
-		Integer T = 4;Integer V = 8;Integer W = 12;Integer X = 16;Integer Z = 20;
-
+		int schoolArray[] = new int[]{};
+		
 		JFrame f = new JFrame("Hi Alan T Ryan :33");
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		try {
@@ -44,14 +41,13 @@ public class Section3_4{
 			public void actionPerformed(ActionEvent e)
 			{
 				String schoolVar = primarySchooField.getText();
-				String upperSchoolVar = schoolVar.toUpperCase();
+				schoolVar = schoolVar.toUpperCase();
 				Integer j = schoolVar.length();
 				Boolean errorPop = false;
 				Boolean stop = false;
 
-
-				for (int i =0 ; i < 16 ; i++){
-					char ch = upperSchoolVar.charAt(i);
+				for (int i = 0 ; i < 16 ; i++){
+					char ch = schoolVar.charAt(i);
                     	switch (ch) {
                             case 'A':
                            	 errorPop = true;
@@ -73,7 +69,7 @@ public class Section3_4{
                                 break;
                             default:
                                 break;
-                        	}
+						}
 
 					if (errorPop == true){
 					JOptionPane.showMessageDialog(null, "Primary School may not contain a vowel (a, e, i, o, u, or y)", "User Error", 
@@ -82,10 +78,9 @@ public class Section3_4{
 					i = 16;
 					}
 					if (stop = false){
-						int[] schoolArray = Arrays.stream(upperSchoolVar.split(" "))
-                          .mapToInt(Integer::parseInt)
-                          .toArray();
-						  System.out.print(schoolArray);
+						for (int x = 0 ; x < 16 ; x++){
+						schoolArray[x] = (schoolVar.charAt(0) - 64);
+						} 
 					}
 				}
 			}
