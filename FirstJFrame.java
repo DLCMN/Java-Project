@@ -44,7 +44,7 @@ public class FirstJFrame implements ActionListener {
  
         //Setting properties of JFrame
         f = new JFrame("Hi Alan T Ryan! :3");
-        f.setLocation(500, 88);
+        f.setLocation(300, 88);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			try {
 				UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
@@ -54,7 +54,7 @@ public class FirstJFrame implements ActionListener {
       
 
 
-         WSPanel = new JPanel();
+         card1 = new JPanel();
 			WSPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 35, 20));
 
 
@@ -139,15 +139,36 @@ public class FirstJFrame implements ActionListener {
 							if (chosenInstrument.isEmpty()) {
 								JDialog noInstrument = new JDialog(f, ">:[");
 								JLabel noInstrum = new JLabel("Please pick one!!!");
-									
+                                JDialog noInstrument1 = new JDialog(f, ">:[");
+                                JLabel noInstrum1 = new JLabel("Please pick one!!!");
+                                JDialog noInstrument2 = new JDialog(f, ">:[");
+                                JLabel noInstrum2 = new JLabel("Please pick one!!!");
 
-								noInstrument.add(noInstrum);
-								noInstrument.setSize(250, 100);
-								noInstrum.setFont(new Font("Serif", Font.BOLD, 20 ));
-								noInstrum.setHorizontalAlignment(JLabel.CENTER);
-								noInstrument.setVisible(true);
+									
+                                    noInstrument.add(noInstrum);
+                                    noInstrument.setSize(250, 100);
+                                    noInstrum.setFont(new Font("Serif", Font.BOLD, 20 ));
+                                    noInstrum.setHorizontalAlignment(JLabel.CENTER);
+                                    noInstrument.setVisible(true);
+                                    noInstrument.setLocation(((int)(Math.random() *800) + 50), ((int)(Math.random() *500) + 20));
+                                    
+                                    noInstrument1.add(noInstrum1);
+                                    noInstrument1.setSize(250, 100);
+                                    noInstrum1.setFont(new Font("Serif", Font.BOLD, 20 ));
+                                    noInstrum1.setHorizontalAlignment(JLabel.CENTER);
+                                    noInstrument1.setVisible(true);
+                                    noInstrument1.setLocation(((int)(Math.random() *1200) + 50), ((int)(Math.random() *700) + 20));
+
+                                     noInstrument2.add(noInstrum2);
+                                    noInstrument2.setSize(250, 100);
+                                    noInstrum2.setFont(new Font("Serif", Font.BOLD, 20 ));
+                                    noInstrum2.setHorizontalAlignment(JLabel.CENTER);
+                                    noInstrument2.setVisible(true);
+                                    noInstrument2.setLocation(((int)(Math.random() *800) + 50), ((int)(Math.random() *500) + 20));
 								//add error sound
-							}
+                                
+                            }
+
 							else {
 								SecondJFrame secondJFrame =new SecondJFrame();//Opening the second JFrame
         						f.dispose();//Disposing the First JFrame
@@ -196,6 +217,12 @@ class SecondJFrame implements ActionListener{
     JTextField maidenNameField;
     JPanel maidenPanel;
 
+    static double a;
+    static double b;
+    static double c;
+    static int randomTempo;
+    static double tempo;
+
     public static String maidenName = "";
  
     //Creating constructor of the class 
@@ -204,7 +231,7 @@ class SecondJFrame implements ActionListener{
         //Setting properties of JFrame
         frame=new JFrame("Second JFrame");
 
-        frame.setLocation(900, -5);
+        frame.setLocation(900, 300);
  
         
          maidenPanel = new JPanel();
@@ -213,10 +240,10 @@ class SecondJFrame implements ActionListener{
         //Setting properties of JButton
 
         maidenNameField = new JTextField();
-        maidenPanel.add(maidenNameField).setMinimumSize(new Dimension(150, 50));
-			maidenNameField.setMaximumSize(new Dimension(150, 50));
-            maidenNameField.setPreferredSize(new Dimension(150, 50));
-            maidenNameField.setFont(new Font("Serif", Font.BOLD, 10 ));
+        maidenPanel.add(maidenNameField).setMinimumSize(new Dimension(200, 50));
+			maidenNameField.setMaximumSize(new Dimension(200, 50));
+            maidenNameField.setPreferredSize(new Dimension(200, 50));
+            maidenNameField.setFont(new Font("Serif", Font.BOLD, 20 ));
 
             maideButton = new JButton("Enter");
 
@@ -225,10 +252,58 @@ class SecondJFrame implements ActionListener{
 							//Here goes the action (method) you want to execute when clicked
                             maidenName = maidenNameField.getText();
                                 JOptionPane.showMessageDialog(null, maidenName, "PlaceHolder", JOptionPane.INFORMATION_MESSAGE);
-                        
+                                maidenName = maidenName.toUpperCase();
+                                a = ((maidenName.charAt(0) - 64)/10.0) + ((maidenName.charAt(0) - 64)%10);
+                                b = ((maidenName.charAt(1) - 64)/10.0) + ((maidenName.charAt(1) - 64)%10);
+                                c = ((maidenName.charAt(2) - 64)/10.0) + ((maidenName.charAt(2) - 64)%10);
+
+                                if (a > 1) {
+                                    while(a > 1) {
+                                        a = a/2;
+                                    }
+                                }
+                                else
+                                    return;
+                                    if (b > 1) {
+                                    while(b > 1) {
+                                        b = b/2;
+                                    }
+                                }
+                                   else
+                                    return;
+                                   if (c > 2) {
+                                    while(c > 2) {
+                                        c = c/2;
+                                    }
+                                }
+                                   else
+                                    return;
+                                
+                                tempo = (a+b+c)/2;
+                                if (tempo > 2.8) {
+                                    tempo = tempo / 2;
+                                }
+
+                                else if (tempo < 0.2) {
+                                    tempo = tempo * 2.5;
+                                }
+
+
+                                randomTempo = (maidenName.charAt(3)-64) + (maidenName.charAt(4)-64);
+                                  if (randomTempo > 5) {
+                                    while(randomTempo > 5) {
+                                        randomTempo = randomTempo/2;
+                                    }
+                                }
+
+
+
+                            System.out.println(tempo);
+                            System.out.println(randomTempo);
 							}
-				
-					});
+
+                    }
+    );
 					maidenPanel.add(maideButton).setMinimumSize(new Dimension(75, 40));
 					maideButton.setMaximumSize(new Dimension(75, 40));
 					maideButton.setPreferredSize(new Dimension(75, 40));
@@ -237,7 +312,7 @@ class SecondJFrame implements ActionListener{
         //Adding components to JFrame
    
 		frame.add(maidenPanel);
-        frame.setSize(300, 150);	
+        frame.setSize(400, 150);	
         frame.setResizable(false);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
