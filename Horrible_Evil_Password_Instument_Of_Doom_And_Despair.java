@@ -19,6 +19,8 @@ public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair extends JFrame
     JPanel card1;
     JPanel card2;
 
+	JPanel card5;
+
     JButton buttonInstSkip = new JButton("Go to Card 2");
     JButton maideButton = new JButton("Go to Card 1");
 
@@ -61,6 +63,7 @@ public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair extends JFrame
 
 		card1 = new JPanel((new FlowLayout(FlowLayout.CENTER, 65,30)));
 		card2 = new JPanel((new FlowLayout(FlowLayout.CENTER, 65, 20)));
+		card5 = new JPanel((new FlowLayout(FlowLayout.CENTER, 65, 20)));
 		mainPanel = new JPanel();
 		instrument = new CardLayout(40, 20);
 		mainPanel.setLayout(instrument);
@@ -308,6 +311,7 @@ public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair extends JFrame
 		
 		mainPanel.add(card1, "card1");
         mainPanel.add(card2, "card2");
+		mainPanel.add(card5, "card5");
 			//card2.setPreferredSize(getSize());
         
 
@@ -317,6 +321,13 @@ public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair extends JFrame
         setSize(500, 500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
+
+//Int songSize = song.length
+
+		//for (int r = 0; r < songSize)
+			//PlayMusic(r);
+		//wait(tempo);
+
 	}
 }
 
@@ -381,3 +392,25 @@ public void main(String[] args) {
         }
     }
 
+
+	public static void PlayMusic(String location) {
+		try
+		{
+			File musicPath = new File(location);
+			if (musicPath.exists()) 
+			{
+				AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
+				Clip clip = AudioSystem.getClip();
+				clip.open(audioInput);
+				clip.start();
+			}
+			else
+			{
+				System.out.println("No file");
+			}
+		}
+		catch(Exception e) {
+				System.out.println(e);
+		}
+	}
+}
