@@ -1,17 +1,15 @@
 
-import javax.swing.*;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import java.io.File;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-
+import java.io.IOException;
+import javax.sound.sampled.*;
+import javax.swing.*;
 
 
 public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair extends JFrame {
@@ -150,6 +148,7 @@ public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair extends JFrame
                         @Override
 						public void actionPerformed(ActionEvent e)            {
 							System.out.println("hello");
+							playWithSpeed(chosenInstrument,100);
 							if (chosenInstrument.isEmpty() || chosenInstrument == null) {
 								JDialog noInstrument = new JDialog(Horrible_Evil_Password_Instument_Of_Doom_And_Despair.this,">:[");
 								JLabel noInstrum = new JLabel("Please pick one!!!");
@@ -211,6 +210,21 @@ public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair extends JFrame
 						public void actionPerformed(ActionEvent e)            {
 							//Here goes the action (method) you want to execute when clicked
                             maidenName = maidenNameField.getText();
+
+							for (int p = 0; p < maidenName.length(); p++) {
+								c = maidenName.charAt(p);
+								if (!(c >= 'A' && c <= 'Z') && !(c >= 'a' && c <= 'z')) {
+										JDialog notLetter = new JDialog(Horrible_Evil_Password_Instument_Of_Doom_And_Despair.this,">:[");
+									JLabel noLetter = new JLabel("Please only use letters");
+									notLetter.add(noLetter);
+
+								   notLetter.setSize(250, 100);
+                                    noLetter.setFont(new Font("Serif", Font.BOLD, 15 ));
+                                    noLetter.setHorizontalAlignment(JLabel.CENTER);
+                                    notLetter.setVisible(true);
+                                    notLetter.setLocation(((int)(Math.random() *1200) + 50), ((int)(Math.random() *700) + 20));
+							}
+						}
                               if (maidenName.length() < 5)  {
 								JDialog maidenTooShort = new JDialog(Horrible_Evil_Password_Instument_Of_Doom_And_Despair.this,">:[");
 								JLabel maidenShort = new JLabel("Please write atleast 5 letters");
@@ -237,17 +251,6 @@ public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair extends JFrame
 
 							  }
 
-							  else if (!(c >= 'A' && c <= 'Z') && !(c >= 'a' && c <= 'z')) {
-										JDialog notLetter = new JDialog(Horrible_Evil_Password_Instument_Of_Doom_And_Despair.this,">:[");
-								JLabel noLetter = new JLabel("Please only use letters");
-								notLetter.add(noLetter);
-			
-                                   notLetter.setSize(250, 100);
-                                    noLetter.setFont(new Font("Serif", Font.BOLD, 15 ));
-                                    noLetter.setHorizontalAlignment(JLabel.CENTER);
-                                    notLetter.setVisible(true);
-                                    notLetter.setLocation(((int)(Math.random() *1200) + 50), ((int)(Math.random() *700) + 20));
-							  }
 							  else
                                 maidenName = maidenName.toUpperCase();
                                 a = ((maidenName.charAt(0) - 64)/10.0) + ((maidenName.charAt(0) - 64)%10);
@@ -309,42 +312,72 @@ public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair extends JFrame
         
 
 
-		card2.add(maideButton);
-
 
         add(mainPanel);
         setSize(500, 500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
-    }
-
-
-
-
-    public static void main(String[] args) {
-        new Horrible_Evil_Password_Instument_Of_Doom_And_Despair();
-        
-    }
-
-
-public static void PlayMusic(String location) {
-		try
-		{
-			File musicPath = new File(location);
-			if (musicPath.exists()) 
-			{
-				AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
-				Clip clip = AudioSystem.getClip();
-				clip.open(audioInput);
-				clip.start();
-			}
-			else
-			{
-				System.out.println("No file");
-			}
-		}
-		catch(Exception e) {
-				System.out.println(e);
-		}
 	}
 }
+
+public void main(String[] args) {
+	new Horrible_Evil_Password_Instument_Of_Doom_And_Despair();
+}
+// ai code vvv
+	  public static void playWithSpeed(String location, int speedPercent) {
+        float speedFactor = speedPercent / 100f;
+        File file = new File(location);
+
+        if (!file.exists()) {
+            System.out.println("File not found: " + location);
+            return;
+        }
+
+        try (AudioInputStream sourceStream = AudioSystem.getAudioInputStream(file)) {
+            AudioFormat baseFormat = sourceStream.getFormat();
+
+            // Ensure we work with PCM signed format for conversion
+            AudioFormat pcmBase = new AudioFormat(
+                    AudioFormat.Encoding.PCM_SIGNED,
+                    baseFormat.getSampleRate(),
+                    (baseFormat.getSampleSizeInBits() == AudioSystem.NOT_SPECIFIED) ? 16 : baseFormat.getSampleSizeInBits(),
+                    baseFormat.getChannels(),
+                    baseFormat.getChannels() * ((baseFormat.getSampleSizeInBits() == AudioSystem.NOT_SPECIFIED) ? 2 : baseFormat.getSampleSizeInBits() / 8),
+                    baseFormat.getSampleRate(),
+                    false);
+
+            AudioInputStream pcmStream = AudioSystem.getAudioInputStream(pcmBase, sourceStream);
+
+            // Create a target format with adjusted sample rate (this changes playback speed)
+            float newSampleRate = pcmBase.getSampleRate() * speedFactor;
+            AudioFormat targetFormat = new AudioFormat(
+                    pcmBase.getEncoding(),
+                    newSampleRate,
+                    pcmBase.getSampleSizeInBits(),
+                    pcmBase.getChannels(),
+                    pcmBase.getFrameSize(),
+                    newSampleRate,
+                    pcmBase.isBigEndian());
+
+            AudioInputStream playbackStream = AudioSystem.getAudioInputStream(targetFormat, pcmStream);
+
+            DataLine.Info info = new DataLine.Info(SourceDataLine.class, targetFormat);
+            try (SourceDataLine line = (SourceDataLine) AudioSystem.getLine(info)) {
+                line.open(targetFormat);
+                line.start();
+
+                byte[] buffer = new byte[4096];
+                int bytesRead;
+                while ((bytesRead = playbackStream.read(buffer, 0, buffer.length)) != -1) {
+                    line.write(buffer, 0, bytesRead);
+                }
+
+                line.drain();
+            }
+        } catch (UnsupportedAudioFileException e) {
+            System.err.println("Unsupported audio file: " + e.getMessage());
+        } catch (LineUnavailableException | IOException e) {
+            System.err.println("Playback error: " + e.getMessage());
+        }
+    }
+
