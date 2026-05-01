@@ -17,12 +17,18 @@ public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair extends JFrame
 
 	CardLayout instrument;
     JPanel mainPanel;
+	JPanel thirdPanel;
+	JPanel fourthPanel;
     JPanel card1;
     JPanel card2;
+	JPanel card3;
+	JPanel card4;
 
     JButton buttonInstSkip = new JButton("Go to Card 2");
     JButton buutun = new JButton("Go to Card 1");
 
+	int schoolArray[] = new int[]{};
+	int passwordArray[] = new int[]{};
 
 // section 1 variables
     JButton openSecondFrame;
@@ -64,14 +70,12 @@ public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair extends JFrame
 
 		card1 = new JPanel((new FlowLayout(FlowLayout.CENTER, 65,30)));
 		card2 = new JPanel((new FlowLayout(FlowLayout.CENTER, 65, 20)));
+		card3 = new JPanel((new FlowLayout(FlowLayout.CENTER, 65, 20)));
+		card4 = new JPanel((new FlowLayout(FlowLayout.CENTER, 65, 20)));
+		
 		mainPanel = new JPanel();
 		instrument = new CardLayout(40, 20);
 		mainPanel.setLayout(instrument);
-
-
-
-
-
 
 				    worstSound = new JLabel("Which is the worst sound?");
 					worstSound.setFont(new Font("Serif", Font.BOLD, 30 ));
@@ -193,8 +197,143 @@ public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair extends JFrame
 						}
 						
 					});
-					button1.setAlignmentX(FlowLayout.CENTER);
+							card3.setLayout(new FlowLayout(FlowLayout.CENTER, 35, 20));
+
+
+		JLabel label = new JLabel("Which is the worst sound?");
+		label.setFont(new Font("Serif", Font.BOLD, 30 ));
+		label.setHorizontalAlignment(JLabel.CENTER);
+		card3.add(label);
+
+		JTextField primarySchooField = new JTextField("Enter Here", 16);
+		card3.add(primarySchooField);//.setMinimumSize(new Dimension(125, 100));
+		//primarySchooField.setMaximumSize(new Dimension(125, 100));
+		//primarySchooField.setPreferredSize(new Dimension(125, 100));
+
+		JButton button3 = new JButton("Next");
+		button3.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				String schoolVar = primarySchooField.getText();
+				schoolVar = schoolVar.toUpperCase();
+				Integer j = schoolVar.length();
+				Boolean errorPop = false;
+				Boolean stop = false;
+
+				for (int i = 0 ; i < 16 ; i++){
+					char ch = schoolVar.charAt(i);
+                    	switch (ch) {
+                            case 'A':
+                           	 errorPop = true;
+                            break;
+                        	case 'E':
+                        		errorPop = true;
+                            	break;
+                        	case 'I':
+                                errorPop = true;
+                                break;
+                            case 'O':
+                                errorPop = true;
+                                break;
+                            case 'U':
+                                errorPop = true;
+                                break;
+                            case 'Y':
+                            	errorPop = true;
+                                break;
+                            default:
+                                break;
+						}
+
+					if (errorPop == true){
+					JOptionPane.showMessageDialog(null, "Primary School may not contain a vowel (a, e, i, o, u, or y)", "User Error", 
+                                           JOptionPane.INFORMATION_MESSAGE);
+					stop = true;
+					i = 16;
+					}
+				}
+				if (stop == false){
+						for (int x = 0 ; x < 15 ; x++){
+						schoolArray[x] = (schoolVar.charAt(0) - 64);
+						} 
+						JOptionPane.showMessageDialog(null, "schoolArray[0]", "User Error", JOptionPane.INFORMATION_MESSAGE);
+					}
+			}
+		});
+
+		button4.setAlignmentX(FlowLayout.CENTER);
+		card4.add(button4);
+					button4.setAlignmentX(FlowLayout.CENTER);
+
 				
+		JLabel label = new JLabel("Which is the worst sound?");
+		label.setFont(new Font("Serif", Font.BOLD, 30 ));
+		label.setHorizontalAlignment(JLabel.CENTER);
+		card3.add(label);
+
+		JTextField passwordField = new JTextField("Enter Here", 16);
+		card3.add(primarySchooField);//.setMinimumSize(new Dimension(125, 100));
+		//primarySchooField.setMaximumSize(new Dimension(125, 100));
+		//primarySchooField.setPreferredSize(new Dimension(125, 100));
+
+		JButton button4 = new JButton("Next");
+		button4.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				String passwordVar = passwordField.getText();
+				passwordVar = passwordVar.toUpperCase();
+				Integer j = passwordVar.length();
+				Boolean errorPop = false;
+				Boolean stop = false;
+
+				for (int i = 0 ; i < 16 ; i++){
+					char ch = passwordVar.charAt(i);
+                    	switch (ch) {
+                            case 'A':
+                           	 errorPop = true;
+                            break;
+                        	case 'E':
+                        		errorPop = true;
+                            	break;
+                        	case 'I':
+                                errorPop = true;
+                                break;
+                            case 'O':
+                                errorPop = true;
+                                break;
+                            case 'U':
+                                errorPop = true;
+                                break;
+                            case 'Y':
+                            	errorPop = true;
+                                break;
+                            default:
+                                break;
+						}
+
+					if (errorPop == true){
+					JOptionPane.showMessageDialog(null, "Password may not contain a vowel (a, e, i, o, u, or y)", "User Error", 
+                                           JOptionPane.INFORMATION_MESSAGE);
+					stop = true;
+					i = 16;
+					}
+				}
+				if (stop == false){
+						for (int x = 0 ; x < 15 ; x++){
+						passwordArray[x] = (passwordVar.charAt(0) - 64);
+						} 
+						JOptionPane.showMessageDialog(null, "passwordArray[0]", "User Error", JOptionPane.INFORMATION_MESSAGE);
+					}
+			for{piano = 0 ; piano < 16 ; paino++){
+				playWithSpeed(chosenInstrument, passwordArray);
+			}
+			}
+		}
+		button4.setAlignmentX(FlowLayout.CENTER);
+		card4.add(button4);
+					button4.setAlignmentX(FlowLayout.CENTER);
+
+
         card1.add(button1);
 		mainPanel.add(card1, "card1");
         mainPanel.add(card2, "card2");
