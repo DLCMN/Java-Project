@@ -324,7 +324,7 @@ public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair extends JFrame
 						} 
 						JOptionPane.showMessageDialog(null, "passwordArray[0]", "User Error", JOptionPane.INFORMATION_MESSAGE);
 					}
-			for{piano = 0 ; piano < 16 ; paino++){
+			for(piano = 0 ; piano < 16 ; paino++){
 				playWithSpeed(chosenInstrument, passwordArray);
 			}
 			}
