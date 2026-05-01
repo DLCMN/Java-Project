@@ -1,15 +1,13 @@
 
-import javax.swing.*;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import java.io.File;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
+import java.io.IOException;
+import javax.sound.sampled.*;
+import javax.swing.*;
 
 
 
@@ -27,14 +25,13 @@ public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair{
 		String meow = "Meow.wav";
 		String moo = "Moo.wav";
 
-		
+		int schoolArray[] = new int[]{};
+		int passwordArray[] = new int[]{};
 
 		ImageIcon cat = new ImageIcon("happyCat.png");
 		ImageIcon CowBell = new ImageIcon("CowBell.png");
 		ImageIcon Guitar = new ImageIcon("SpongebobGuitar.png");
 		ImageIcon Harmonica = new ImageIcon("harmonicaSquirrel.png");
-
-
 
 
 
@@ -45,14 +42,6 @@ public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair{
 			} catch (Exception e) {
         	    System.out.println("Look and Feel not set: " + e.getMessage());
 			}
-
-
-		
-
-
-
-
-	
 		
 			JPanel WSPanel = new JPanel();
 				WSPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 35, 20));
@@ -135,7 +124,7 @@ public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair{
 					button1.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e)            {
 							System.out.println("hello");
-							PlayMusic(chosenInstrument);
+							playWithSpeed(chosenInstrument, 400);
 							if (chosenInstrument == "") {
 								JDialog noInstrument = new JDialog(f, ">:[");
 								JLabel noInstrum = new JLabel("Please pick one!!!");
@@ -166,25 +155,61 @@ public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair{
 		f.setSize(400, 400);	
 		f.setVisible(true);
 	}
+// ai code vvv
+	  public static void playWithSpeed(String location, int speedPercent) {
+        float speedFactor = speedPercent / 100f;
+        File file = new File(location);
 
-	public static void PlayMusic(String location) {
-		try
-		{
-			File musicPath = new File(location);
-			if (musicPath.exists()) 
-			{
-				AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
-				Clip clip = AudioSystem.getClip();
-				clip.open(audioInput);
-				clip.start();
-			}
-			else
-			{
-				System.out.println("No file");
-			}
-		}
-		catch(Exception e) {
-				System.out.println(e);
-		}
-	}
+        if (!file.exists()) {
+            System.out.println("File not found: " + location);
+            return;
+        }
+
+        try (AudioInputStream sourceStream = AudioSystem.getAudioInputStream(file)) {
+            AudioFormat baseFormat = sourceStream.getFormat();
+
+            // Ensure we work with PCM signed format for conversion
+            AudioFormat pcmBase = new AudioFormat(
+                    AudioFormat.Encoding.PCM_SIGNED,
+                    baseFormat.getSampleRate(),
+                    (baseFormat.getSampleSizeInBits() == AudioSystem.NOT_SPECIFIED) ? 16 : baseFormat.getSampleSizeInBits(),
+                    baseFormat.getChannels(),
+                    baseFormat.getChannels() * ((baseFormat.getSampleSizeInBits() == AudioSystem.NOT_SPECIFIED) ? 2 : baseFormat.getSampleSizeInBits() / 8),
+                    baseFormat.getSampleRate(),
+                    false);
+
+            AudioInputStream pcmStream = AudioSystem.getAudioInputStream(pcmBase, sourceStream);
+
+            // Create a target format with adjusted sample rate (this changes playback speed)
+            float newSampleRate = pcmBase.getSampleRate() * speedFactor;
+            AudioFormat targetFormat = new AudioFormat(
+                    pcmBase.getEncoding(),
+                    newSampleRate,
+                    pcmBase.getSampleSizeInBits(),
+                    pcmBase.getChannels(),
+                    pcmBase.getFrameSize(),
+                    newSampleRate,
+                    pcmBase.isBigEndian());
+
+            AudioInputStream playbackStream = AudioSystem.getAudioInputStream(targetFormat, pcmStream);
+
+            DataLine.Info info = new DataLine.Info(SourceDataLine.class, targetFormat);
+            try (SourceDataLine line = (SourceDataLine) AudioSystem.getLine(info)) {
+                line.open(targetFormat);
+                line.start();
+
+                byte[] buffer = new byte[4096];
+                int bytesRead;
+                while ((bytesRead = playbackStream.read(buffer, 0, buffer.length)) != -1) {
+                    line.write(buffer, 0, bytesRead);
+                }
+
+                line.drain();
+            }
+        } catch (UnsupportedAudioFileException e) {
+            System.err.println("Unsupported audio file: " + e.getMessage());
+        } catch (LineUnavailableException | IOException e) {
+            System.err.println("Playback error: " + e.getMessage());
+        }
+    }
 } 

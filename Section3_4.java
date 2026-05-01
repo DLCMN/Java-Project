@@ -3,7 +3,6 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
 import javax.swing.*;
 
 
@@ -77,12 +76,13 @@ public class Section3_4{
 					stop = true;
 					i = 16;
 					}
-					if (stop = false){
-						for (int x = 0 ; x < 16 ; x++){
+				}
+				if (stop == false){
+						for (int x = 0 ; x < 15 ; x++){
 						schoolArray[x] = (schoolVar.charAt(0) - 64);
 						} 
+						JOptionPane.showMessageDialog(null, "schoolArray[0]", "User Error", JOptionPane.INFORMATION_MESSAGE);
 					}
-				}
 			}
 		});
 		button1.setAlignmentX(FlowLayout.CENTER);
