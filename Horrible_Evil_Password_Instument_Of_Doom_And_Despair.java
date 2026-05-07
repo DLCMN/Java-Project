@@ -261,16 +261,7 @@ public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair extends JFrame
 			}
 		});
 
-		button4.setAlignmentX(FlowLayout.CENTER);
-		card4.add(button4);
-					button4.setAlignmentX(FlowLayout.CENTER);
-
-				
-		JLabel label = new JLabel("Which is the worst sound?");
-		label.setFont(new Font("Serif", Font.BOLD, 30 ));
-		label.setHorizontalAlignment(JLabel.CENTER);
-		card3.add(label);
-
+		
 		JTextField passwordField = new JTextField("Enter Here", 16);
 		card3.add(primarySchooField);//.setMinimumSize(new Dimension(125, 100));
 		//primarySchooField.setMaximumSize(new Dimension(125, 100));
@@ -318,17 +309,19 @@ public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair extends JFrame
 					i = 16;
 					}
 				}
+
 				if (stop == false){
 						for (int x = 0 ; x < 15 ; x++){
 						passwordArray[x] = (passwordVar.charAt(0) - 64);
 						} 
 						JOptionPane.showMessageDialog(null, "passwordArray[0]", "User Error", JOptionPane.INFORMATION_MESSAGE);
 					}
-			for{piano = 0 ; piano < 16 ; paino++){
-				playWithSpeed(chosenInstrument, passwordArray);
+				for(int piano = 0 ; piano < 16 ; piano++){
+				playWithSpeed(chosenInstrument, piano);
+				}
 			}
-			}
-		}
+		});
+		
 		button4.setAlignmentX(FlowLayout.CENTER);
 		card4.add(button4);
 					button4.setAlignmentX(FlowLayout.CENTER);
@@ -354,7 +347,7 @@ public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair extends JFrame
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
 	}
-}
+
 
 public void main(String[] args) {
 	new Horrible_Evil_Password_Instument_Of_Doom_And_Despair();
@@ -416,4 +409,4 @@ public void main(String[] args) {
             System.err.println("Playback error: " + e.getMessage());
         }
     }
-
+}

@@ -18,6 +18,7 @@ public class FirstJFrame implements ActionListener {
     JButton openSecondFrame;
     JLabel worstSound;
     JPanel WSPanel;
+    JPanel card1;
     JButton buttonInst1;
     JButton buttonInst2;
     JButton buttonInst3;
