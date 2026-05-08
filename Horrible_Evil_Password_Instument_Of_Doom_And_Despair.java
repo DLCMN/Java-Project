@@ -197,13 +197,118 @@ public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair extends JFrame
 						}
 						
 					});
-							card3.setLayout(new FlowLayout(FlowLayout.CENTER, 35, 20));
+						button1.setAlignmentX(FlowLayout.CENTER);
+				
+        card1.add(button1);
+        
+			
+
+        maidenNameField = new JTextField();
+        card2.add(maidenNameField).setMinimumSize(new Dimension(200, 50));
+			maidenNameField.setMaximumSize(new Dimension(200, 50));
+            maidenNameField.setPreferredSize(new Dimension(200, 50));
+            maidenNameField.setFont(new Font("Serif", Font.BOLD, 20 ));
+
+            maideButton = new JButton("Enter");
+
+					maideButton.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e)            {
+							//Here goes the action (method) you want to execute when clicked
+                            maidenName = maidenNameField.getText();
+
+							for (int p = 0; p < maidenName.length(); p++) {
+								c = maidenName.charAt(p);
+								if (!(c >= 'A' && c <= 'Z') && !(c >= 'a' && c <= 'z')) {
+										JDialog notLetter = new JDialog(Horrible_Evil_Password_Instument_Of_Doom_And_Despair.this,">:[");
+									JLabel noLetter = new JLabel("Please only use letters");
+									notLetter.add(noLetter);
+
+								   notLetter.setSize(250, 100);
+                                    noLetter.setFont(new Font("Serif", Font.BOLD, 15 ));
+                                    noLetter.setHorizontalAlignment(JLabel.CENTER);
+                                    notLetter.setVisible(true);
+                                    notLetter.setLocation(((int)(Math.random() *1200) + 50), ((int)(Math.random() *700) + 20));
+							}
+						}
+                              if (maidenName.length() < 5)  {
+								JDialog maidenTooShort = new JDialog(Horrible_Evil_Password_Instument_Of_Doom_And_Despair.this,">:[");
+								JLabel maidenShort = new JLabel("Please write atleast 5 letters");
+
+								maidenTooShort.add(maidenShort);
+									
+									 maidenTooShort.setSize(250, 100);
+                                    maidenShort.setFont(new Font("Serif", Font.BOLD, 15 ));
+                                    maidenShort.setHorizontalAlignment(JLabel.CENTER);
+                                    maidenTooShort.setVisible(true);
+                                    maidenTooShort.setLocation(((int)(Math.random() *1200) + 50), ((int)(Math.random() *700) + 20));
+							  }
+							  else if (maidenName.length() < 5)  {
+								JDialog maidenTooLong = new JDialog(Horrible_Evil_Password_Instument_Of_Doom_And_Despair.this,">:[");
+								JLabel maidenLong = new JLabel("Please write less than 10 letters");
+
+								maidenTooLong.add(maidenLong);
+			
+                                    maidenTooLong.setSize(250, 100);
+                                    maidenLong.setFont(new Font("Serif", Font.BOLD, 15 ));
+                                    maidenLong.setHorizontalAlignment(JLabel.CENTER);
+                                    maidenTooLong.setVisible(true);
+                                    maidenTooLong.setLocation(((int)(Math.random() *1200) + 50), ((int)(Math.random() *700) + 20));
+
+							  }
+
+							  else
+                                maidenName = maidenName.toUpperCase();
+                                a = ((maidenName.charAt(0) - 64)/10.0) + ((maidenName.charAt(0) - 64)%10);
+                                b = ((maidenName.charAt(1) - 64)/10.0) + ((maidenName.charAt(1) - 64)%10);
+                                c = ((maidenName.charAt(2) - 64)/10.0) + ((maidenName.charAt(2) - 64)%10);
+
+                                if (a > 1) {
+                                    while(a > 1) {
+                                        a = a/2;
+                                    }
+                                }
+                                else
+                                    return;
+                                    if (b > 1) {
+                                    while(b > 1) {
+                                        b = b/2;
+                                    }
+                                }
+                                   else
+                                    return;
+                                   if (c > 2) {
+                                    while(c > 2) {
+                                        c = c/2;
+                                    }
+                                }
+                                   else
+                                    return;
+                                
+                                tempo = (a+b+c)/2;
+                                if (tempo > 2.8) {
+                                    tempo = tempo / 2;
+                                }
+
+                                else if (tempo < 0.2) {
+                                    tempo = tempo * 2.5;
+                                }
 
 
-		JLabel label = new JLabel("Which is the worst sound?");
-		label.setFont(new Font("Serif", Font.BOLD, 30 ));
-		label.setHorizontalAlignment(JLabel.CENTER);
-		card3.add(label);
+                                randomTempo = (maidenName.charAt(3)-64) + (maidenName.charAt(4)-64);
+                                  if (randomTempo > 5) {
+                                    while(randomTempo > 5) {
+                                        randomTempo = randomTempo/2;
+                                    }
+                                }
+								instrument.show(mainPanel, "card3");
+							}
+
+                    }
+    );
+					card2.add(maideButton).setMinimumSize(new Dimension(75, 40));
+					maideButton.setMaximumSize(new Dimension(75, 40));
+					maideButton.setPreferredSize(new Dimension(75, 40));
+                    maideButton.setFont(new Font("Serif", Font.BOLD, 15 ));
 
 		JTextField primarySchooField = new JTextField("Enter Here", 16);
 		card3.add(primarySchooField);//.setMinimumSize(new Dimension(125, 100));
@@ -327,7 +432,6 @@ public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair extends JFrame
 					button4.setAlignmentX(FlowLayout.CENTER);
 
 
-        card1.add(button1);
 		mainPanel.add(card1, "card1");
         mainPanel.add(card2, "card2");
 			//card2.setPreferredSize(getSize());
@@ -335,7 +439,9 @@ public class Horrible_Evil_Password_Instument_Of_Doom_And_Despair extends JFrame
 
 
          buutun.addActionListener((e) -> {
-            instrument.show(mainPanel, "card1");
+			if (maidenName == "" || maidenName == null) {
+            instrument.show(mainPanel, "card3");
+			}
         }
     );
 
